@@ -2,14 +2,15 @@
 Allow weewx to push data to zabbix.
 
 ## Installation
+## Dependencies
+The `zabbix_sender` command must be available.
+
 ### Build the package:
 ```
 mkdir -p ~/git/ && cd ~/git && git clone https://github.com/RandomReaper/weewx-zabbix.git
 cd weewx-zabbix
 ./gen-tar.sh
 ```
-## Dependencies
-The `zabbix_sender` command must be available.
 
 ## Install the weewx extension
 sudo wee_extension --install weewx-zabbix.tgz
