@@ -1,9 +1,11 @@
 # weewx-zabbix
-Allow weewx to push data to zabbix.
+Allow [weewx](http://www.weewx.com/) (open source software for your weather station) to push data to [zabbix](https://www.zabbix.com/) (open source monitoring software).
 
 ## Installation
-## Dependencies
-The `zabbix_sender` command must be available.
+Should I really say that a working **weewx** and **zabbix** setup are requiered?
+
+### Dependencies
+This plugins uses the `zabbix_sender` command, so it must be available on the host running **weewx**.
 
 ### Build the package:
 ```
