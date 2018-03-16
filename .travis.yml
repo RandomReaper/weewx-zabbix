@@ -10,7 +10,7 @@ install:
 script:
   - true
 
-before_depoy:
+before_deploy:
   - pwd
   - ./gen-tar.sh
 
