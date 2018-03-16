@@ -7,7 +7,7 @@ Should I really say that a working **weewx** and **zabbix** setup are requiered?
 ### Dependencies
 This plugins uses the `zabbix_sender` command, so it must be available on the host running **weewx**.
 
-### Build the package:
+### Build the package, or get it from [here](https://github.com/RandomReaper/weewx-zabbix/releases/latest)
 ```
 mkdir -p ~/git/ && cd ~/git && git clone https://github.com/RandomReaper/weewx-zabbix.git
 cd weewx-zabbix
