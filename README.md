@@ -39,3 +39,33 @@ sudo wee_extension --install weewx-zabbix.tgz
 ## Add the key to zabbix
 Add a key of type "Zabbix trapper", with the key name weewx_outTemp (formed with the prefix set in the config file + the weewx key name).
 
+## Availables key
+Here is a list of the key pushed on my system, probably configuration dependant.
+```
+weewx_altimeter
+weewx_heatindex
+weewx_radiation
+weewx_inDewpoint
+weewx_inTemp
+weewx_barometer
+weewx_windchill
+weewx_dewpoint
+weewx_rain
+weewx_humidex
+weewx_pressure
+weewx_rainRate
+weewx_usUnits
+weewx_txBatteryStatus
+weewx_appTemp
+weewx_UV
+weewx_dateTime
+weewx_windDir
+weewx_outTemp
+weewx_windSpeed
+weewx_inHumidity
+weewx_windGust
+weewx_windGustDir
+weewx_cloudbase
+```
+
+
