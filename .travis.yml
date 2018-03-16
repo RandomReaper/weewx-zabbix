@@ -22,4 +22,3 @@ deploy:
   file: weewx-zabbix.tgz
   on:
     repo: RandomReaper/weewx-zabbix
-    branch: test-travis
