@@ -1,4 +1,6 @@
 #!/bin/bash
 DIR=${PWD##*/}
 TARGET=weewx-zabbix.tgz
-tar --exclude ".*" --exclude "./gen-tar.sh" --exclude "$TARGET" -cvzf "$TARGET" -C .. "$DIR"
+rm -rf $TARGET
+tar --exclude ".*" --exclude "./gen-tar.sh" -cvzf "../$TARGET" -C .. "$DIR"
+mv "../$TARGET" .
