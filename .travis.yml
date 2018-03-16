@@ -1,3 +1,15 @@
+language: python
+python:
+  - "2.7"
+
+# No need for this, only deploy
+install:
+  - true
+
+# No need for this, only deploy
+script:
+  - true
+
 before_depoy:
   - pwd
   - ./gen-tar.sh
