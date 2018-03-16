@@ -1,28 +1,24 @@
 notifications:
   on_success: change
   on_failure: always
-
 language: python
 python:
-  - "2.7"
-
-# No need for this, only deploy
+- '2.7'
 install:
-  - true
-
-# No need for this, only deploy
+- true
 script:
-  - true
-
+- true
 before_deploy:
-  - pwd
-  - ./gen-tar.sh
-
+- pwd
+- "./gen-tar.sh"
 deploy:
   provider: releases
   api_key:
-    secure: IU2mY+LOiy97ZMhtVO+wX/b73YsuCvk7KCbToHPrWPYvnke7ATjVNx5sdDQMolduK5lMGFLwLTnDJYtDkiwP9qIg1cfQUQRGu7LBtJy4kjyQlRZZfOT8+iQOPwkSUpqvq5Vus7exgERt1MOCWtbyqF34g2BqnypCmcd2FjRBZFsb2rDFVA7QYbaZqBmmDEWk3UBH3wxOwnjwvQ/0dzT+QFyg3oVYwXgwiF1o8g+atQ0dO6hVukB0EH/sGSTLLfsH6uviem2IePNWlBr6UY1MmDTnx7V9MtJ5ByoT8QYNithK+My1rYOYaHc159MIv2LiGez4S5BnF2glFqmx6dixCjoYQ8bmmmfKjyZQRtSuNlPQrIIRA79Udj5v+rnf3JT0b0+bkSs98ORJ7dOdXIDTAGdJ8MbeP1H+VR5ngclsrE7FOn4LsivrozH5clCtA7KdB+aWNXD8KI9pPLmczqt95DcBSrRHiuBR7wz+jzIO2Q00Uwf4wUv/VbajChYIEGRkisHkW2CAsf7Yn4NhY23173M6GY0w90eLgVNPLfjL2+4NkoLh8/rbmigRHWbHMyCJP2rUUcnwOFKbPSta9X+/mOP53NLUXMtaQJug1MNHwI3iMWIRUyJeshkGN7xwUaR7CgytDtHzOFMQawQiGBE3JXBeg3a+YCb7ozqQZw1LXSc=
+    secure: n8oD79q1hxkHYUS1nfd/CnH+wqI1F6XOzVvU/eQnVr1rxnvdSD+n/NG83mm8c6UPiywhPGrz2DEdQbpDj8Prys7zWyD3eHKQU+Kus7l9pimnwOimpeEGzSdYqGg+RGnjCHEubFtgI7MRX9Lr65JFrSKw2/gAFvoPR6MPHyJqvfWmKwZMi5seRQlwFNAKeX6wS9ExUuqWyf0Zt55poTTXAnpIYvgQkYroGZce5cQpCiRVwyEaBblPlUfaQH9ploSyvb0SfldkdZt0xIdy2xukDACm4Ku1172qBe5YKf2o3zSeeeH1bMlfkxWUPaWZhB+AoDmwWU+yN9IXZJ9c/jdaOCi7HMst1J8MyfFWAQXrmJJ7Ypu9/qc8RoZuADGZ0v17OL3VltuHtvcQiCu1F8dVacoQjEi3MFMYPmOn1pICQVIQs7nQx72QcYdJv2vIp5qhYzUrUwK2t7s0VL/0hYOI2L8nS7t9r/j5xfzTXcQB4zTnnBS4OLqCtpclB9oqEYXa7clN6N4iGLC9zPX7vtEHcPoO4tXSmeyt9spdFtPwkPzdC1QKZ9AgzA0w2+IAwBrTR3Nemq2X63AWs9UzhPr9N8eYQsaO/5Zj5ZmSKFJy69QCIRvcbXQQq7PdLV97ykMf8Z3oX7JUQvTuphE/zEiDtWrLXMbtk8EfwhwGGGIDgg4=
   skip_cleanup: true
   file: weewx-zabbix.tgz
   on:
+    branch: master
     repo: RandomReaper/weewx-zabbix
+
+
