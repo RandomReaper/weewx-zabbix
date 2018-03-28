@@ -67,5 +67,8 @@ weewx_windGust
 weewx_windGustDir
 weewx_cloudbase
 ```
+## My setup
+![WH2600](doc/images/wh2600.png)
 
-
+The WH2600 weather station pushes data to zabbix using [weewx-interceptor](https://github.com/matthewwall/weewx-interceptor), then weewx-zabbix pushes data to [zabbix](https://www.zabbix.com/).
+ 
