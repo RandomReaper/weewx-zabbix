@@ -29,7 +29,6 @@ import os
 import weeutil.weeutil
 import weewx.engine
 import weewx.units
-import weewx
 
 from subprocess import Popen, PIPE, STDOUT
 
@@ -58,34 +57,20 @@ class Zabbix(weewx.engine.StdService):
         self.prefix = conf.get('prefix', 'weewx_')
         self.server = conf.get('server', '127.0.0.1')
         self.host = conf.get('host', 'weewx-host')
-        if conf.has_key('units'):
-            if conf['units'] == "US":
-                self.unit_system = weewx.US
-            if conf['units'] == "METRIC":
-                self.unit_system = weewx.METRIC
-            if conf['units'] == "METRICWX":
-               self.unit_system = weewx.METRICWX
-        else:
-            self.unit_system = None
 
         logdbg("self.enable=" + str(self.enable))
         logdbg("self.zabbix_sender=" + self.zabbix_sender)
         logdbg("self.prefix=" + self.prefix)
         logdbg("self.server=" + self.server)
         logdbg("self.host=" + self.host)
-        logdbg("self.unit_system=" + str(self.unit_system))
 
         if self.enable:
 	        self.bind(weewx.NEW_LOOP_PACKET, self.loop)
 
     def loop(self, event):
 	logdbg("loop data:")
-        targetUnits = self.unit_system
-        if targetUnits is None:
-            targetUnits = event.packet['usUnits']
-        convertedPacket = weewx.units.to_std_system(event.packet, targetUnits)
         s = ""
-        for key,value in convertedPacket.items():
+        for key,value in event.packet.items():
             l=self.host + " " + self.prefix+key + " " + str(value) + "\n"
             s+=l
 	    logdbg(l)
