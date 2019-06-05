@@ -24,6 +24,7 @@
 #############################################################################
 
 from datetime import datetime
+import time
 import os
 
 import weeutil.weeutil
@@ -57,18 +58,26 @@ class Zabbix(weewx.engine.StdService):
         self.prefix = conf.get('prefix', 'weewx_')
         self.server = conf.get('server', '127.0.0.1')
         self.host = conf.get('host', 'weewx-host')
+        self.send_interval = float(conf.get('send_interval', 0))
+
+        self.last_time = None
 
         logdbg("self.enable=" + str(self.enable))
         logdbg("self.zabbix_sender=" + self.zabbix_sender)
         logdbg("self.prefix=" + self.prefix)
         logdbg("self.server=" + self.server)
         logdbg("self.host=" + self.host)
+        logdbg("self.send_interval=" + str(self.send_interval))
 
         if self.enable:
 	        self.bind(weewx.NEW_LOOP_PACKET, self.loop)
 
     def loop(self, event):
 	logdbg("loop data:")
+        if self.send_interval > 0 and self.last_time != None and time.time() - self.last_time < self.send_interval:
+            logdbg("Ignoring packet. Next update in " + str(self.send_interval - (time.time() - self.last_time)) + "s")
+            return
+        self.last_time = time.time()
         s = ""
         for key,value in event.packet.items():
             l=self.host + " " + self.prefix+key + " " + str(value) + "\n"
