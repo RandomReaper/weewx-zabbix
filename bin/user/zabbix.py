@@ -7,7 +7,7 @@
 # \url     https://github.com/RandomReaper/weewx-zabbix
 #
 #############################################################################
-# 
+#
 # Copyright 2018 Marc Pignat
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -51,29 +51,29 @@ class Zabbix(weewx.engine.StdService):
     def __init__(self, engine, config_dict):
         super(Zabbix, self).__init__(engine, config_dict)
 
-	loginf("init")
-        conf = config_dict['ZABBIX']
-        self.enable = weeutil.weeutil.to_bool(conf.get('enable', False))
-        self.zabbix_sender = conf.get('zabbix_sender', '/usr/bin/zabbix_sender')
-        self.prefix = conf.get('prefix', 'weewx_')
-        self.server = conf.get('server', '127.0.0.1')
-        self.host = conf.get('host', 'weewx-host')
-        self.send_interval = float(conf.get('send_interval', 0))
+    loginf("init")
+    conf = config_dict['ZABBIX']
+    self.enable = weeutil.weeutil.to_bool(conf.get('enable', False))
+    self.zabbix_sender = conf.get('zabbix_sender', '/usr/bin/zabbix_sender')
+    self.prefix = conf.get('prefix', 'weewx_')
+    self.server = conf.get('server', '127.0.0.1')
+    self.host = conf.get('host', 'weewx-host')
+    self.send_interval = float(conf.get('send_interval', 0))
 
-        self.last_time = None
+    self.last_time = None
 
-        logdbg("self.enable=" + str(self.enable))
-        logdbg("self.zabbix_sender=" + self.zabbix_sender)
-        logdbg("self.prefix=" + self.prefix)
-        logdbg("self.server=" + self.server)
-        logdbg("self.host=" + self.host)
-        logdbg("self.send_interval=" + str(self.send_interval))
+    logdbg("self.enable=" + str(self.enable))
+    logdbg("self.zabbix_sender=" + self.zabbix_sender)
+    logdbg("self.prefix=" + self.prefix)
+    logdbg("self.server=" + self.server)
+    logdbg("self.host=" + self.host)
+    logdbg("self.send_interval=" + str(self.send_interval))
 
-        if self.enable:
-	        self.bind(weewx.NEW_LOOP_PACKET, self.loop)
+    if self.enable:
+        self.bind(weewx.NEW_LOOP_PACKET, self.loop)
 
     def loop(self, event):
-	logdbg("loop data:")
+        logdbg("loop data:")
         if self.send_interval > 0 and self.last_time != None and time.time() - self.last_time < self.send_interval:
             logdbg("Ignoring packet. Next update in " + str(self.send_interval - (time.time() - self.last_time)) + "s")
             return
@@ -82,10 +82,10 @@ class Zabbix(weewx.engine.StdService):
         for key,value in event.packet.items():
             l=self.host + " " + self.prefix+key + " " + str(value) + "\n"
             s+=l
-	    logdbg(l)
+            logdbg(l)
 
-	c = [self.zabbix_sender, "-z", self.server, "-i", "-"]
-	logdbg("command line : " + str(c))
-	p = Popen(c, stdout=PIPE, stdin=PIPE, stderr=STDOUT)
-	sender_stdout = p.communicate(input=s)[0]
-	loginf(self.zabbix_sender + " result: " +sender_stdout.decode())
+        c = [self.zabbix_sender, "-z", self.server, "-i", "-"]
+        logdbg("command line : " + str(c))
+        p = Popen(c, stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+        sender_stdout = p.communicate(input=s)[0]
+        loginf(self.zabbix_sender + " result: " +sender_stdout.decode())
