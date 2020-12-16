@@ -87,5 +87,5 @@ class Zabbix(weewx.engine.StdService):
         c = [self.zabbix_sender, "-z", self.server, "-i", "-"]
         logdbg("command line : " + str(c))
         p = Popen(c, stdout=PIPE, stdin=PIPE, stderr=STDOUT)
-        sender_stdout = p.communicate(input=s)[0]
+        sender_stdout = p.communicate(input=s.encode())[0]
         loginf(self.zabbix_sender + " result: " +sender_stdout.decode())
