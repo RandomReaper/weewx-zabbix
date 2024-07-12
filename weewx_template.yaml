@@ -1,0 +1,965 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+    - uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    - uuid: 2333364da8df4cd18622c7c631ec200c
+      template: WeeWX_Zabbix-Trapper
+      name: WeeWX_Zabbix-Trapper
+      description: |
+        A template for https://github.com/RandomReaper/weewx-zabbix/
+        
+        The template does not use discovery-rules. Best practise: Disable all items that do not fit to your weatherstation
+      groups:
+        - name: Templates
+      items:
+        - uuid: c70015d73145404d9badd1e6c8253918
+          name: 'WEEWX Apparent Temperature'
+          type: TRAP
+          key: weewx_appTemp
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: 379f3798ec194457868e0ece764a3fe0
+          name: 'WEEWX Cloudbase'
+          type: TRAP
+          key: weewx_cloudbase
+          delay: '0'
+          value_type: FLOAT
+          units: m
+          tags:
+            - tag: Weather
+        - uuid: bbd423e5d3964d139c31860a9b5ee9f7
+          name: 'WEEWX Dewpoint'
+          type: TRAP
+          key: weewx_dewpoint
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Weather
+        - uuid: df791bf043cb463ea947e867ba814a85
+          name: 'WEEWX Evapotranspiration'
+          type: TRAP
+          key: weewx_ET
+          delay: '0'
+          value_type: FLOAT
+          units: mm/m²
+          description: 'If the value is -1, no data was submitted.'
+          tags:
+            - tag: Weather
+        - uuid: 1c36f13b27314064b512cf1d0995703e
+          name: 'WEEWX {$WEEWX_EXTRATEMP1} Humidity'
+          type: TRAP
+          key: weewx_extraHumid1
+          delay: '0'
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Weather
+        - uuid: ff486f205bbb4f30bb3598e354714888
+          name: 'WEEWX {$WEEWX_EXTRATEMP2}  Humidity'
+          type: TRAP
+          key: weewx_extraHumid2
+          delay: '0'
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Weather
+        - uuid: 0d8f85ab8f6244b091f9dc431c48fbb4
+          name: 'WEEWX {$WEEWX_EXTRATEMP3} Humidity'
+          type: TRAP
+          key: weewx_extraHumid3
+          delay: '0'
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Weather
+        - uuid: 64fe3579526243eca6dad636410417a0
+          name: 'WEEWX {$WEEWX_EXTRATEMP4}  Humidity'
+          type: TRAP
+          key: weewx_extraHumid4
+          delay: '0'
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Weather
+        - uuid: 70e07ed76b1f4d7ca45908dc23a42eeb
+          name: 'WEEWX {$WEEWX_EXTRATEMP5} Humidity'
+          type: TRAP
+          key: weewx_extraHumid5
+          delay: '0'
+          status: DISABLED
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Weather
+        - uuid: 2d555d6230e242949fefa9ee8cd36d12
+          name: 'WEEWX {$WEEWX_EXTRATEMP6} Humidity'
+          type: TRAP
+          key: weewx_extraHumid6
+          delay: '0'
+          status: DISABLED
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Weather
+        - uuid: 8938b240dd1a44a3a637a91153b9faa4
+          name: 'WEEWX {$WEEWX_EXTRATEMP7} Humidity'
+          type: TRAP
+          key: weewx_extraHumid7
+          delay: '0'
+          status: DISABLED
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Weather
+        - uuid: 49f8a700d58a42f4881eea7ad9f98046
+          name: 'WEEWX {$WEEWX_EXTRATEMP8} Humidity'
+          type: TRAP
+          key: weewx_extraHumid8
+          delay: '0'
+          status: DISABLED
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Weather
+        - uuid: cec25c844e744e07858617479ce83019
+          name: 'WEEWX {$WEEWX_EXTRATEMP1} Temperature'
+          type: TRAP
+          key: weewx_extraTemp1
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: 212fe990f5b44fae965b20996910ec77
+          name: 'WEEWX {$WEEWX_EXTRATEMP2}  Temperature'
+          type: TRAP
+          key: weewx_extraTemp2
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: 0c2c2b912bc744169e8c4d04f230ae22
+          name: 'WEEWX {$WEEWX_EXTRATEMP3}  Temperature'
+          type: TRAP
+          key: weewx_extraTemp3
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: 438a6a037b4e42eb871d6fd4b8b2869a
+          name: 'WEEWX {$WEEWX_EXTRATEMP4} Temperature'
+          type: TRAP
+          key: weewx_extraTemp4
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: c136de3e5c9d408fa1f3f917cf0b45ab
+          name: 'WEEWX {$WEEWX_EXTRATEMP5}  Temperature'
+          type: TRAP
+          key: weewx_extraTemp5
+          delay: '0'
+          status: DISABLED
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: 520d411931e243bcb18a008616283e36
+          name: 'WEEWX {$WEEWX_EXTRATEMP6}  Temperature'
+          type: TRAP
+          key: weewx_extraTemp6
+          delay: '0'
+          status: DISABLED
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: 0f5591c392584a279abada7c5822dee4
+          name: 'WEEWX {$WEEWX_EXTRATEMP7}  Temperature'
+          type: TRAP
+          key: weewx_extraTemp7
+          delay: '0'
+          status: DISABLED
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: f900d5b1fe4846ec8fba0e1a2c6cbb1b
+          name: 'WEEWX {$WEEWX_EXTRATEMP8}  Temperature'
+          type: TRAP
+          key: weewx_extraTemp8
+          delay: '0'
+          status: DISABLED
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: 5ba081bd91174813bbf23cd74588b029
+          name: 'WEEWX Heat Index'
+          type: TRAP
+          key: weewx_heatindex
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: 4d5ebe77c30e4d28ae903c2726b27e9a
+          name: 'WEEWX Indoor Dewpoint'
+          type: TRAP
+          key: weewx_inDewpoint
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Weather
+        - uuid: 63f846039f514fedad2fdb798a5021d9
+          name: 'WEEWX Indoor Humidity'
+          type: TRAP
+          key: weewx_inHumidity
+          delay: '0'
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Weather
+        - uuid: a49ae3772b3e4b8f8e9b670c88c950c0
+          name: 'WEEWX Indoor Temperature'
+          type: TRAP
+          key: weewx_inTemp
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: ecc28ba0ef824991a74f0dfddfda6d5a
+          name: 'WEEWX Luminosity'
+          type: TRAP
+          key: weewx_luminosity
+          delay: '0'
+          units: lx
+          tags:
+            - tag: Weather
+        - uuid: c4fcaf2b4c624ab4b1578c7bf7818616
+          name: 'WEEWX Outdoor Humidity'
+          type: TRAP
+          key: weewx_outHumidity
+          delay: '0'
+          value_type: FLOAT
+          units: '%'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: d4658db36bc445edae79358afb5584ce
+          name: 'WEEWX Outdoor Temperature'
+          type: TRAP
+          key: weewx_outTemp
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: d75a49f3579a44aa8cd6613551191538
+          name: 'WEEWX Barometer'
+          type: TRAP
+          key: weewx_pressure
+          delay: '0'
+          value_type: FLOAT
+          units: Bar
+          description: 'Zabbix trapper reports the pressure in "inches mercury" (inHg), this item converts the value to Bar'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return value * 33.8639 / 1000;'
+          tags:
+            - tag: Weather
+        - uuid: d4ae0131e97646dbb7e85cfc73868aaf
+          name: 'WEEWX Radiation'
+          type: TRAP
+          key: weewx_radiation
+          delay: '0'
+          value_type: FLOAT
+          units: w/m²
+          tags:
+            - tag: Weather
+        - uuid: 31d037051b3b4e8c914f4872c59c110a
+          name: 'WEEWX Rain'
+          type: TRAP
+          key: weewx_rain
+          delay: '0'
+          value_type: FLOAT
+          units: mm/m²
+          description: |
+            Amount of rain reported within the last loop-packet of weewx.
+            The value is in inches and has to be converted to mm in the preprocessing step
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '25.4'
+          tags:
+            - tag: Weather
+        - uuid: 026d0f5e9e97455e83dd6aafb9454d2a
+          name: 'WEEWX Rain Rate'
+          type: TRAP
+          key: weewx_rainRate
+          delay: '0'
+          value_type: FLOAT
+          units: mm/h
+          description: 'The rain rate is measured in inches per hour and converted to mm per hour'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '25.4'
+          tags:
+            - tag: Weather
+        - uuid: 9518d480a6a24a9aaf55b5eddf86f629
+          name: 'WEEWX Rain Hourly'
+          type: CALCULATED
+          key: weewx_rain_1h
+          delay: 1h;h0-23
+          value_type: FLOAT
+          units: mm/m²
+          params: 'sum(//weewx_rain,1h)'
+          description: 'Amount of rain within the last 1h, calculated every hour'
+          tags:
+            - tag: Weather
+        - uuid: e778abbf41c446e9b5c8943c48fde979
+          name: 'WEEWX Rain Daily'
+          type: CALCULATED
+          key: weewx_rain_24h
+          delay: 1h;h0m1
+          value_type: FLOAT
+          units: mm/m²
+          params: 'sum(//weewx_rain,24h)'
+          description: 'Amount of rain within the last 24h, calculated daily'
+          tags:
+            - tag: Weather
+        - uuid: 0121f5b2f1024405beaf852c9ade5abf
+          name: 'WEEWX Rain Last 24 Hours'
+          type: CALCULATED
+          key: weewx_rain_lasst_24h
+          delay: 1h;h0-23
+          history: 2d
+          trends: '0'
+          value_type: FLOAT
+          units: mm/m²
+          params: 'sum(//weewx_rain,24h)'
+          description: 'Amount of rain within the last 24h, calculated every hour'
+          tags:
+            - tag: Weather
+        - uuid: 3d6cb90258654520afd5408e5a3303f7
+          name: 'WEEWX Rain Last Hour'
+          type: CALCULATED
+          key: weewx_rain_last_1h
+          delay: 1h;m/10
+          history: 2h
+          trends: '0'
+          value_type: FLOAT
+          units: mm/m²
+          params: 'sum(//weewx_rain,1h)'
+          description: 'Amount of rain within the last 1h, calculated every 10 minutes'
+          tags:
+            - tag: Weather
+        - uuid: bc759ddea8eb48d7ba5835e9f525a4fd
+          name: 'WEEWX Storm Rain'
+          type: TRAP
+          key: weewx_stormRain
+          delay: '0'
+          value_type: FLOAT
+          units: mm/m²
+          description: |
+            Amount of event rain reported within the last loop-packet of weewx
+            The value is in inches and has to be converted to mm in the preprocessing step
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '25.4'
+          tags:
+            - tag: Weather
+        - uuid: 8942255cd66040e48a44512e8f85f2fb
+          name: 'WEEWX UV Index'
+          type: TRAP
+          key: weewx_UV
+          delay: '0'
+          tags:
+            - tag: Weather
+        - uuid: 26c9279620564d0d897d864249422cef
+          name: 'WEEWX UV Radiation'
+          type: TRAP
+          key: weewx_uvradiation
+          delay: '0'
+          value_type: FLOAT
+          units: w/m²
+          tags:
+            - tag: Weather
+        - uuid: 3e7e8bee75f5422a94544276f02f36f2
+          name: 'WEEWX WH31 CH 1 Battery Status'
+          type: TRAP
+          key: weewx_wh31_ch1_batt
+          delay: '0'
+          trends: '0'
+          valuemap:
+            name: 'WH31 Battery Status'
+          tags:
+            - tag: Battery
+            - tag: Weather
+          triggers:
+            - uuid: 0e0d026e3673421eaaa04d350fbdfb4e
+              expression: last(/WeeWX_Zabbix-Trapper/weewx_wh31_ch1_batt)<>0
+              name: 'Sensor WH31 CH1 Battery not normal'
+              priority: INFO
+        - uuid: 779eef979faa4596a680833171c52db0
+          name: 'WEEWX WH31 CH 1 Signal Strength'
+          type: TRAP
+          key: weewx_wh31_ch1_sig
+          delay: '0'
+          trends: '0'
+          valuemap:
+            name: 'Signal Strength'
+          tags:
+            - tag: Battery
+            - tag: Weather
+        - uuid: 9b37f2e4f3084e1a95f64aa970db1226
+          name: 'WEEWX WH31 CH 2 Battery Status'
+          type: TRAP
+          key: weewx_wh31_ch2_batt
+          delay: '0'
+          trends: '0'
+          valuemap:
+            name: 'WH31 Battery Status'
+          tags:
+            - tag: Battery
+            - tag: Weather
+          triggers:
+            - uuid: 3af75601d6924f3a8ecc4ca7664889f9
+              expression: last(/WeeWX_Zabbix-Trapper/weewx_wh31_ch2_batt)<>0
+              name: 'Sensor WH31 CH2 Battery not normal'
+              priority: INFO
+        - uuid: 40afc50b559a4749858a896ba4f3464f
+          name: 'WEEWX WH31 CH 2 Signal Strength'
+          type: TRAP
+          key: weewx_wh31_ch2_sig
+          delay: '0'
+          trends: '0'
+          valuemap:
+            name: 'Signal Strength'
+          tags:
+            - tag: Battery
+            - tag: Weather
+        - uuid: 078865bd89fc4e21b48317cfa9344bfc
+          name: 'WEEWX WH31 CH 3 Battery Status'
+          type: TRAP
+          key: weewx_wh31_ch3_batt
+          delay: '0'
+          trends: '0'
+          valuemap:
+            name: 'WH31 Battery Status'
+          tags:
+            - tag: Battery
+            - tag: Weather
+          triggers:
+            - uuid: 5c28df7c5fe04c00a3126af8f37b348c
+              expression: last(/WeeWX_Zabbix-Trapper/weewx_wh31_ch3_batt)<>0
+              name: 'Sensor WH31 CH3 Battery not normal'
+              priority: INFO
+        - uuid: 52ee4daf36db486f9ccc1033011025a4
+          name: 'WEEWX WH31 CH 3 Signal Strength'
+          type: TRAP
+          key: weewx_wh31_ch3_sig
+          delay: '0'
+          trends: '0'
+          valuemap:
+            name: 'Signal Strength'
+          tags:
+            - tag: Battery
+            - tag: Weather
+        - uuid: 7d0226367cd9402cb15d34f5b23917be
+          name: 'WEEWX WH31 CH 4 Battery Status'
+          type: TRAP
+          key: weewx_wh31_ch4_batt
+          delay: '0'
+          trends: '0'
+          valuemap:
+            name: 'WH31 Battery Status'
+          tags:
+            - tag: Battery
+            - tag: Weather
+          triggers:
+            - uuid: 25f685c86ee7410487e24edd772963a5
+              expression: last(/WeeWX_Zabbix-Trapper/weewx_wh31_ch4_batt)<>0
+              name: 'Sensor WH31 CH4 Battery not normal'
+              priority: INFO
+        - uuid: 48e18b7b3d7946a58860e0890461564c
+          name: 'WEEWX WH31 CH 4 Signal Strength'
+          type: TRAP
+          key: weewx_wh31_ch4_sig
+          delay: '0'
+          trends: '0'
+          valuemap:
+            name: 'Signal Strength'
+          tags:
+            - tag: Battery
+            - tag: Weather
+        - uuid: b2c768c5b0684f8c8be38842f0b39f2a
+          name: 'WEEWX WH31 CH 5 Battery Status'
+          type: TRAP
+          key: weewx_wh31_ch5_batt
+          delay: '0'
+          trends: '0'
+          status: DISABLED
+          valuemap:
+            name: 'WH31 Battery Status'
+          tags:
+            - tag: Battery
+            - tag: Weather
+          triggers:
+            - uuid: d033285d664f4c32936cd58e0cbd293f
+              expression: last(/WeeWX_Zabbix-Trapper/weewx_wh31_ch5_batt)<>0
+              name: 'Sensor WH31 CH5 Battery not normal'
+              priority: INFO
+        - uuid: 2b314b96a90546529928fd6d3281a5cc
+          name: 'WEEWX WH31 CH 5 Signal Strength'
+          type: TRAP
+          key: weewx_wh31_ch5_sig
+          delay: '0'
+          trends: '0'
+          status: DISABLED
+          valuemap:
+            name: 'Signal Strength'
+          tags:
+            - tag: Battery
+            - tag: Weather
+        - uuid: 321b17c368704c748ba1c7e2668c1c2c
+          name: 'WEEWX WH31 CH 6 Battery Status'
+          type: TRAP
+          key: weewx_wh31_ch6_batt
+          delay: '0'
+          trends: '0'
+          status: DISABLED
+          valuemap:
+            name: 'WH31 Battery Status'
+          tags:
+            - tag: Battery
+            - tag: Weather
+          triggers:
+            - uuid: 474c6050583144bd91e72a67c2d5e1fe
+              expression: last(/WeeWX_Zabbix-Trapper/weewx_wh31_ch6_batt)<>0
+              name: 'Sensor WH31 CH6 Battery not normal'
+              priority: INFO
+        - uuid: 8181016642de4b0282cb6147e33efc93
+          name: 'WEEWX WH31 CH 6 Signal Strength'
+          type: TRAP
+          key: weewx_wh31_ch6_sig
+          delay: '0'
+          trends: '0'
+          status: DISABLED
+          valuemap:
+            name: 'Signal Strength'
+          tags:
+            - tag: Battery
+            - tag: Weather
+        - uuid: 90441d07c68846e1845611420cd013b2
+          name: 'WEEWX WH31 CH 7 Battery Status'
+          type: TRAP
+          key: weewx_wh31_ch7_batt
+          delay: '0'
+          trends: '0'
+          status: DISABLED
+          valuemap:
+            name: 'WH31 Battery Status'
+          tags:
+            - tag: Battery
+            - tag: Weather
+          triggers:
+            - uuid: eb8b0da112e04b43bfb3f1108c364e18
+              expression: last(/WeeWX_Zabbix-Trapper/weewx_wh31_ch7_batt)<>0
+              name: 'Sensor WH31 CH7 Battery not normal'
+              priority: INFO
+        - uuid: ace553980d6c48cab0fbdc59aab04552
+          name: 'WEEWX WH31 CH 7 Signal Strength'
+          type: TRAP
+          key: weewx_wh31_ch7_sig
+          delay: '0'
+          trends: '0'
+          status: DISABLED
+          valuemap:
+            name: 'Signal Strength'
+          tags:
+            - tag: Battery
+            - tag: Weather
+        - uuid: 1f0ee2a8728c4e4fb871de37d30517da
+          name: 'WEEWX WH31 CH 8 Battery Status'
+          type: TRAP
+          key: weewx_wh31_ch8_batt
+          delay: '0'
+          trends: '0'
+          status: DISABLED
+          valuemap:
+            name: 'WH31 Battery Status'
+          tags:
+            - tag: Battery
+            - tag: Weather
+          triggers:
+            - uuid: aa256dd97ba247b1abe909e1e8160f8a
+              expression: last(/WeeWX_Zabbix-Trapper/weewx_wh31_ch8_batt)<>0
+              name: 'Sensor WH31 CH8 Battery not normal'
+              priority: INFO
+        - uuid: fc9f3c71ff0049b48ed311460a44e082
+          name: 'WEEWX WH31 CH 8 Signal Strength'
+          type: TRAP
+          key: weewx_wh31_ch8_sig
+          delay: '0'
+          trends: '0'
+          status: DISABLED
+          valuemap:
+            name: 'Signal Strength'
+          tags:
+            - tag: Battery
+            - tag: Weather
+        - uuid: 8f7798bda5ae443dab1da653b151c853
+          name: 'WEEWX Windchill Temperature'
+          type: TRAP
+          key: weewx_windchill
+          delay: '0'
+          value_type: FLOAT
+          units: °C
+          description: 'Zabbix trapper reports the temperature in degrees Farenheit. This item converts it to degrees Celsius'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - 'return (value - 32) * 5 / 9;'
+          tags:
+            - tag: Temperature
+            - tag: Weather
+        - uuid: 6035fa4eaa6b4bbe86095ac95f63fe97
+          name: 'WEEWX Wind Direction'
+          type: TRAP
+          key: weewx_windDir
+          delay: '0'
+          value_type: FLOAT
+          units: °
+          description: 'Returns the direction of the wind. should be in the range between 0 and 360. If the value -1 there was no wind.'
+          preprocessing:
+            - type: CHECK_NOT_SUPPORTED
+              parameters:
+                - '-1'
+              error_handler: CUSTOM_VALUE
+              error_handler_params: '-1'
+            - type: IN_RANGE
+              parameters:
+                - '0'
+                - '360'
+              error_handler: CUSTOM_VALUE
+              error_handler_params: '-1'
+          tags:
+            - tag: Weather
+        - uuid: 04b1f7fde7e04c3fb30be9bf8e692ee1
+          name: 'WEEWX Wind Gust Speed'
+          type: TRAP
+          key: weewx_windGust
+          delay: '0'
+          value_type: FLOAT
+          units: m/s
+          description: 'Windspeed is reported in mIles per hour and converted to meters per second'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.44704'
+          tags:
+            - tag: Weather
+        - uuid: 6aaae695a0684d2e8b089cc6f672ff3c
+          name: 'WEEWX Wind Speed'
+          type: TRAP
+          key: weewx_windSpeed
+          delay: '0'
+          value_type: FLOAT
+          units: m/s
+          description: 'Windspeed is reported in mIles per hour and converted to meters per second'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.44704'
+          tags:
+            - tag: Weather
+        - uuid: 98c0967b72814e1d82ed28a3136b9d0f
+          name: 'WEEWX WS90 Battery Status'
+          type: TRAP
+          key: weewx_ws90_batt
+          delay: '0'
+          trends: '0'
+          value_type: FLOAT
+          units: V
+          tags:
+            - tag: Battery
+            - tag: Weather
+          triggers:
+            - uuid: 668c61c9416340f1a3113270da45cb7c
+              expression: 'last(/WeeWX_Zabbix-Trapper/weewx_ws90_batt)<{$WEEWX_WS90_BATTLOW}'
+              name: 'Sensor WS90 Battery not normal'
+              priority: INFO
+        - uuid: a670f0c0b5414ec394eebdeb2049be51
+          name: 'WEEWX WS90 Signal Strength'
+          type: TRAP
+          key: weewx_ws90_sig
+          delay: '0'
+          trends: '0'
+          value_type: FLOAT
+          valuemap:
+            name: 'Signal Strength'
+          tags:
+            - tag: Battery
+            - tag: Weather
+      tags:
+        - tag: Weather
+      macros:
+        - macro: '{$WEEWXPREFIX}'
+          value: weewx_
+          description: 'The same prefix as used in the weewx extension configuration. Using this as Macro in the items key does not work.'
+        - macro: '{$WEEWX_EXTRATEMP1}'
+          value: 'ExtraTemp 1'
+          description: 'A descriptive name for the additional sensor'
+        - macro: '{$WEEWX_EXTRATEMP2}'
+          value: 'ExtraTemp 2'
+          description: 'A descriptive name for the additional sensor'
+        - macro: '{$WEEWX_EXTRATEMP3}'
+          value: 'ExtraTemp 3'
+          description: 'A descriptive name for the additional sensor'
+        - macro: '{$WEEWX_EXTRATEMP4}'
+          value: 'ExtraTemp 4'
+          description: 'A descriptive name for the additional sensor'
+        - macro: '{$WEEWX_EXTRATEMP5}'
+          value: 'ExtraTemp 5'
+          description: 'A descriptive name for the additional sensor'
+        - macro: '{$WEEWX_EXTRATEMP6}'
+          value: 'ExtraTemp 6'
+          description: 'A descriptive name for the additional sensor'
+        - macro: '{$WEEWX_EXTRATEMP7}'
+          value: 'ExtraTemp 7'
+          description: 'A descriptive name for the additional sensor'
+        - macro: '{$WEEWX_EXTRATEMP8}'
+          value: 'ExtraTemp 8'
+          description: 'A descriptive name for the additional sensor'
+        - macro: '{$WEEWX_WS90_BATTLOW}'
+          value: '2.8'
+          description: 'The voltage level the creator of the template assumed to be worthy fo a warning'
+      dashboards:
+        - uuid: f695901a6b5c4638b0528aee95826c81
+          name: Weather
+          display_period: '600'
+          pages:
+            - widgets:
+                - type: honeycomb
+                  name: Temperature
+                  width: '22'
+                  height: '4'
+                  fields:
+                    - type: STRING
+                      name: bg_color
+                      value: FFCCBC
+                    - type: STRING
+                      name: items.0
+                      value: '*temperature*'
+                    - type: STRING
+                      name: primary_label
+                      value: '{ITEM.NAME}'
+                    - type: STRING
+                      name: reference
+                      value: HOLMP
+                    - type: INTEGER
+                      name: rf_rate
+                      value: '120'
+                - type: honeycomb
+                  name: Humidity
+                  'y': '4'
+                  width: '22'
+                  height: '4'
+                  fields:
+                    - type: STRING
+                      name: bg_color
+                      value: B2EBF2
+                    - type: STRING
+                      name: items.0
+                      value: '*humidity*'
+                    - type: STRING
+                      name: primary_label
+                      value: '{ITEM.NAME}'
+                    - type: STRING
+                      name: reference
+                      value: ZZUPB
+                    - type: INTEGER
+                      name: rf_rate
+                      value: '120'
+                - type: item
+                  name: 'Rain Rate'
+                  'y': '8'
+                  width: '12'
+                  height: '3'
+                  fields:
+                    - type: ITEM
+                      name: itemid.0
+                      value:
+                        host: WeeWX_Zabbix-Trapper
+                        key: weewx_rainRate
+                    - type: INTEGER
+                      name: rf_rate
+                      value: '120'
+                    - type: INTEGER
+                      name: units_pos
+                      value: '3'
+                - type: item
+                  name: 'Daily Rain'
+                  x: '12'
+                  'y': '8'
+                  width: '12'
+                  height: '3'
+                  fields:
+                    - type: ITEM
+                      name: itemid.0
+                      value:
+                        host: WeeWX_Zabbix-Trapper
+                        key: weewx_rain_24h
+                    - type: INTEGER
+                      name: rf_rate
+                      value: '120'
+                    - type: INTEGER
+                      name: units_pos
+                      value: '3'
+                - type: graph
+                  name: Temperature
+                  x: '22'
+                  width: '44'
+                  height: '4'
+                  fields:
+                    - type: STRING
+                      name: itemid._reference
+                      value: HOLMP._itemid
+                    - type: STRING
+                      name: reference
+                      value: ZQEXQ
+                    - type: INTEGER
+                      name: source_type
+                      value: '1'
+                - type: graph
+                  name: Humidity
+                  x: '22'
+                  'y': '4'
+                  width: '44'
+                  height: '4'
+                  fields:
+                    - type: STRING
+                      name: itemid._reference
+                      value: ZZUPB._itemid
+                    - type: STRING
+                      name: reference
+                      value: ZOFPL
+                    - type: INTEGER
+                      name: source_type
+                      value: '1'
+      valuemaps:
+        - uuid: f10bc91e6775461a805a32d4a74b0238
+          name: 'Signal Strength'
+          mappings:
+            - value: '1'
+              newvalue: Low
+            - value: '2'
+              newvalue: Fair
+            - value: '3'
+              newvalue: Good
+            - value: '4'
+              newvalue: Excellent
+        - uuid: 67b4f63de977453fbec6d407cfc95898
+          name: 'WH31 Battery Status'
+          mappings:
+            - value: '0'
+              newvalue: Normal
+            - value: '1'
+              newvalue: Low
